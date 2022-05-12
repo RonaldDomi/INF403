@@ -1,2 +1,2 @@
 # INF403
-Database terminal simulator with Python/SQL
+Database terminal simulator with Python/SQL.
