@@ -1,13 +1,15 @@
-DELETE * FROM Auterurs IF EXISTS Auteurs;
-DELETE * FROM Auterurs IF EXISTS Audio_Types;
-DELETE * FROM Auterurs IF EXISTS OeuvreAudios;
-DELETE * FROM Auterurs IF EXISTS Clients;
-DELETE * FROM Auterurs IF EXISTS Ecrit;
-DELETE * FROM Auterurs IF EXISTS Possede;
+DELETE FROM Auteurs;
+DELETE FROM Audio_Types;
+DELETE FROM OeuvreAudios;
+DELETE FROM Clients;
+DELETE FROM Ecrit;
+DELETE FROM Possede;
 
 INSERT INTO Audio_Types VALUES("audiobook", 600);
+INSERT INTO Audio_Types VALUES("song", 20);
+INSERT INTO Audio_Types VALUES("podcast", 600);
 INSERT INTO Clients VALUES(100, "Ronald", "Domi", '13-04-2002');
-INSERT INTO Possede VALUES(100, 300);
+-- INSERT INTO Possede VALUES(100, 300);
 
 
 
