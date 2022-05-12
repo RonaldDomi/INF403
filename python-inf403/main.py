@@ -1,21 +1,7 @@
 #!/usr/bin/python3
 
 from utils import db
-from automate import *
-
-def select_tous_les_auteurs(conn):
-    """
-    Affiche la liste de tous les auteurs.
-
-    :param conn: Connexion à la base de données
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM Auteurs")
-
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
+from utils.automate import *
 
 
 def main():
@@ -27,14 +13,14 @@ def main():
     conn = db.creer_connexion(db_file)
 
     # Remplir la BD
-    print("On crée la bd et on l'initialise avec des premières valeurs.")
+    print("On crée la bd et on l'initialise avec des premières valeurs.\n")
     db.mise_a_jour_bd(conn, "data/creation.sql")
-    db.mise_a_jour_bd(conn, "data/inserts_roni.sql")
+    db.mise_a_jour_bd(conn, "data/insert.sql")
 
     # Lire la BD
     # print("2. Liste de tous les Auteurs")
     # select_tous_les_auteurs(conn)
-    start_automate()
+    start_automate(conn)
 
 
 
