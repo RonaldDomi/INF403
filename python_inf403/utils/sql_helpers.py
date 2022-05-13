@@ -109,10 +109,25 @@ def select_current_auteur_history(conn, id):
 
 def select_current_client_history(conn, id):
     '''return the history of possisions of the current client'''
-    res = []
     
     cur = conn.cursor()   
-    sql_string = "SELECT * FROM Possede WHERE client_numero = " + str(id)
+    sql_string = "SELECT nom, prix, oeuvretype FROM OeuvreAudios JOIN Possede ON(oeuvre_numero = numero) WHERE client_numero = " + str(id)
+    cur.execute(sql_string)
+    
+    
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+
+
+def select_current_author_stat(conn, id):
+    '''return the stat of possisions of the current client'''
+
+    cur = conn.cursor()
+    sql_string = "SELECT nom, count(oeuvre_numero)*prix FROM OeuvreAudios \
+                    JOIN Possede USING(oeuvre_numero) JOIN Ecrit \
+                    USING(oeuvre_numero) WHERE auteur_numero = " + str(id) + \
+                    " GROUP BY oeuvretype"
     cur.execute(sql_string)
     
     
