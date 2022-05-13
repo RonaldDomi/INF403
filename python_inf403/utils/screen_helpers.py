@@ -11,6 +11,7 @@ def print_introduction():
 
 def print_description():
     print("--------Description-------------")
+    """
     print("\n----------Les clients------------------")
     print("\n(id, n, p, dn) ∈  LesClients ⇐⇒ le client identifie par le numero id, de nom n et de prenom p est inscrit dans la plateforme la date dn.")
     print("\n----------Les artistes------------------")
@@ -23,7 +24,35 @@ def print_description():
     print("\n(c, o) ∈  Œuvres_Clients ⇐⇒ l’œuvre identifie par numéro o, est acheté par le client c")
     print("\n----------Les oeuvres - artistes------------------")
     print("\n(a, o) ∈  Œuvres_Clients ⇐⇒ l’œuvre identifie par numéro o, est cree de taille ou entièrement par l’artiste a\n\n")
-
+    """
+    print("\nBienvenue dans le site de vente d'audio.")
+    print("\nvous pouvez regarder les bases de donnees en tapant la commande information ou -i.")
+    print("\nensuite vous pouvez consulter les differentes bases en tapant leurs nom :")
+    print("[-] clients")
+    print("[-] auteurs")
+    print("[-] types")
+    print("[-] oeuvres\n")
+    print("Vous pouvez aussi vous connectez pour faire d'autre action.\n")
+    print("\nDans le cas où vous etes connectez en tant que clients.\n")
+    print("Pour consultez le catalogue vous pouvez tapez la commande catalogue.")
+    print("puis tapez le type d'oeuvre que vous recherchez :")
+    print("[-] song")
+    print("[-] audiobook")
+    print("[-] oeuvres\n")
+    print("Pour acheter des oeuvre avec la commande buy suivie de l'id du produit.")
+    print("Ex : buy 502\n")
+    print("Vous pouvez aussi consultez votre historique d'achat avec la commande history ou -hist.\n")
+    print("\nDans le cas où vous etes connectez en tant qu'auteur.")
+    print("Pour consultez vos oeuvres vous pouvez tapez la commande history ou -hist\n")
+    print("vous pouvez aussi ajouter une oeuvre en tapant la commande sell : ")
+    print("il faudra ensuite donnes les information demandees :")
+    print("[-] id")
+    print("[-] prix")
+    print("[-] type\n")
+    print("\n\nvous pouvez retournez au menu a tout moment en tapant la commande main.")
+    print("\n\nvous pouvez aussi quittez le programme à tout moment avec la commande quit.")
+    print("********************************\n")
+    
 
     
 def print_help():
@@ -35,12 +64,36 @@ def print_help():
     print("[-] -c")
     print("[-] information")
     print("[-] -i")
+    print("[-] main")
     print("[-] quit")
+
+def print_help_auteur():
+    print("--------Help Auteur-------------")
+    print("les commandes possibles sont :")
+    print("[-] history")
+    print("[-] -hist")
+    print("[-] sell")
+    print("[-] -s")
+    print("[-] main")
+    print("[-] quit")
+
+def print_help_client():
+    print("--------Help Client-------------")
+    print("les commandes possibles sont :")
+    print("[-] history")
+    print("[-] -hist")
+    print("[-] buy")
+    print("[-] -b")
+    print("[-] main")
+    print("[-] quit")
+
     
 def print_information():
     print("--------Information-------------")
     print("[-] clients")
     print("[-] auteurs")
+    print("[-] types")
+    print("[-] oeuvres")
 
 # def print_connexion():
 #     print("---------Connexion----------")
@@ -48,6 +101,35 @@ def print_information():
 #     return id
 
 def print_welcome_client():
-    print("hello client")
+    param = {
+        "username" : "zeynel",
+        "id" : 100,
+        "date" : '23-02-2001'
+    }
+    print("\nBonjour client " + param["username"])
+    print("\nid : " + str(param["id"]))
+    print("\ndate de naissance : " + param["date"])
+    print("\n")
+
 def print_welcome_auteur():
-    print("hello auteur")
+    param = {
+        "username" : "zeynel",
+        "id" : 100,
+        "date" : '23-02-2001'
+    }
+    print("\nBonjour auteur " + param["username"])
+    print("id : " + str(param["id"]))
+    print("date de naissance : " + param["date"])
+
+def input_oeuvre():
+    id = input("veuillez entrez l'id de votre nouvelle oeuvre : ")
+    name = input("veuillez entrez le nom de votre oeuvre : ")
+    type = input("de quelle type est votre oeuvre : ")
+    prix = input("quelle est le prix de votre oeuvre")
+    obj = {
+        "id" : id,
+        "name" : name,
+        "type" : type,
+        "prix" : prix
+    }
+    return obj
