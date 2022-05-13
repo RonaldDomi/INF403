@@ -28,7 +28,7 @@ INSERT INTO OeuvreAudios VALUES(310, "Life", 200.99, "podcast");
 -- AUTEURS
 DELETE FROM Auteurs;
 
-INSERT INTO Auteurs VALUES(200, "LilDicky");                                
+INSERT INTO Auteurs VALUES(200, "LilGangstar");                                
 INSERT INTO Auteurs VALUES(201, "Eminem");                                
 INSERT INTO Auteurs VALUES(202, "DrDre");                                
 INSERT INTO Auteurs VALUES(203, "SnoopDog");                                

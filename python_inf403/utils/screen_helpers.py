@@ -58,12 +58,10 @@ def print_description():
 def print_help():
     print("--------Help-------------")
     print("les commandes possibles sont :")
-    print("[-] description")
-    print("[-] -d")
-    print("[-] connect")
-    print("[-] -c")
-    print("[-] information")
-    print("[-] -i")
+    print("[-] description | -d")
+    print("[-] help | -h")
+    print("[-] information | -i")
+    print("[-] connect $id")
     print("[-] main")
     print("[-] quit")
 
