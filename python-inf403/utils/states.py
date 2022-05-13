@@ -9,7 +9,7 @@ states = {
     "info_type": 7,
     "info_clients": 8,
     "info_oeuvre": 9,
-    "connect": 10,
+    "connect ": 10,
     "buy": 11,
     "history_client": 12,
     "sell": 13,
@@ -19,20 +19,25 @@ states = {
 
 #commands available for each of the states in the automate
 states_commands = {
+    # ------------- empty states
     0: [], #start
     1: [], #intro
-    2: ['--help', '--description', '--information'], #main
     3: [], #description
     4: [], #help
-    5: ['auteurs', 'clients'], #information
     6: [], #info_auteur
     7: [], #info_type
     8: [], #info_clients
     9: [], #info_oeuvre
-    10: [], #connect
+    # -----------!! empty states
+
+    2: ['help', '-h', 'description', '-d', 'information', '-i', 'quit', 
+        'connect'], #main
+    5: ['auteurs', 'clients', 'types', 'oeuvres', 'main', 'quit'], #information
+    10: [], #connect_user
     11: [], #buy
     12: [], #history_client
-    13: [], #sell
-    14: [], #history_auteur
+    13: [], #connect_auteur
+    14: [], #sell
+    15: [], #history_auteur
     100: [],
 }

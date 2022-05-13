@@ -23,7 +23,7 @@ def print_information():
     print("[-] clients")
     print("[-] auteurs")
 
-def print_connexion():
-    print("---------Connexion----------")
-    id = input("entrez votre id")
-    return id
+# def print_connexion():
+#     print("---------Connexion----------")
+#     id = input("entrez votre id")
+#     return id
