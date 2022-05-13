@@ -4,6 +4,8 @@ from utils.screen_helpers import *
 from utils.states import *
 from utils.sql_helpers import *
 
+current_client = 0
+current_auteur = 0
 
 def start_automate(conn):
     '''
@@ -57,6 +59,8 @@ def handle_action(conn, current_state, usr_input, parameter):
     states not considered: information, help, 
     auteurs, clients, types, oeuvres.
     '''
+    global current_client
+    global current_auteur
     
     if(current_state == states['start']):
         print_introduction()
@@ -70,7 +74,9 @@ def handle_action(conn, current_state, usr_input, parameter):
         elif (usr_input == 'connect'):
             if should_connect_client(parameter, conn):
                 print_welcome_client()
+                current_client = parameter 
             elif should_connect_auteur(parameter, conn):
+                current_auteur = parameter 
                 print_welcome_auteur()
             else:
                 print("Didn't connect: id entered not found")
@@ -91,17 +97,35 @@ def handle_action(conn, current_state, usr_input, parameter):
     
     elif(current_state == states['connect_client']):
         if (usr_input == 'shop'):
-            print("shop")
-        if (usr_input == 'history'):
-            print("history")
+            if should_shop_client(parameter, conn):
+                insert_into_possede(conn, current_client, parameter)
+                print('Thank you for buying our product')
+            else:
+                print("Didn't purchase: id entered not found")
+        elif (usr_input == 'history' or usr_input == '--hist'):
+            select_current_client_history(conn, current_client)
     elif(current_state == states['connect_auteur']):
-        pass
-        # if (usr_input == 'shop'):
-        #     print("shop")
-        # if (usr_input == 'history'):
-        #     print("history")
+        if (usr_input == 'shop'):
+            print("shop")
+        elif (usr_input == 'history' or usr_input == '--hist'):
+            select_current_auteur_history(conn, current_auteur)
+        elif(usr_input == "sell"):
+            print("in here you will enter you new product")
+            return_obj = {
+                "id": "311",
+                "name": "'some name'",
+                "prix": "78.50",
+                "type": "'song'"
+            }
+            insert_into_oeuvres(conn, return_obj)
+        elif(usr_input == "remove"):
+            if should_remove_auteur(conn, current_auteur, parameter):
+                print("will be removed")
+            else:
+                print("You cannot remove that item")
 
 def transition(conn, current_state, usr_input, parameter):
+
     '''
     transition for states which can accept input\n
     states not considered: information, help, 
@@ -123,6 +147,7 @@ def transition(conn, current_state, usr_input, parameter):
             return states['final_state']  
         else:
             #sinon on revient
+            # --help --description
             return states['main']
     elif(current_state == states['information']):
         if(usr_input == 'main'):
@@ -131,17 +156,17 @@ def transition(conn, current_state, usr_input, parameter):
             return states['final_state']    
         else:
             return states['information']
-    
     elif(current_state == states['connect_client']):
         if(usr_input == 'main'):
             return states['main']    
         elif(usr_input == 'quit'):
             return states['final_state']   
+        else:
+            return states['connect_client']
     elif(current_state == states['connect_auteur']):
         if(usr_input == 'main'):
             return states['main']    
         elif(usr_input == 'quit'):
-            return states['final_state']   
-        # if(usr_input == 'main'):
-        #     return states['main']    
-
+            return states['final_state']  
+        else:
+            return states['connect_auteur']

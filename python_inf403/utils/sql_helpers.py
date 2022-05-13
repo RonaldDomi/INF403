@@ -68,6 +68,19 @@ def select_client_ids(conn):
     
     return res
 
+def select_oeuvre_ids(conn):
+    '''returns all ids of all oeuvres as a list of ints'''
+    res = []
+    
+    cur = conn.cursor()
+    
+    cur.execute("SELECT numero FROM OeuvreAudios")
+    rows = cur.fetchall()
+    for row in rows:
+        res.append(row[0])     
+    
+    return res
+
 def select_auteur_ids(conn):
     '''returns all ids of all autheurs as a list of ints'''
     res = []
@@ -80,6 +93,60 @@ def select_auteur_ids(conn):
         res.append(row[0])     
     
     return res
+
+def select_current_auteur_history(conn, id):
+    '''return the history of possisions of the current auteur'''
+    res = []
+    
+    cur = conn.cursor()   
+    sql_string = "SELECT * FROM Ecrit WHERE auteur_numero = " + str(id)
+    cur.execute(sql_string)
+    
+    
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+
+def select_current_client_history(conn, id):
+    '''return the history of possisions of the current client'''
+    res = []
+    
+    cur = conn.cursor()   
+    sql_string = "SELECT * FROM Possede WHERE client_numero = " + str(id)
+    cur.execute(sql_string)
+    
+    
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+
+def select_auteur_oeuvres(id, conn):
+    '''return all oeuvres written by id auteur'''
+    res = []
+    
+    cur = conn.cursor()   
+    sql_string = "SELECT * FROM Ecrit WHERE auteur_numero = " + str(id)
+    cur.execute(sql_string)
+    
+    
+    rows = cur.fetchall()
+    for row in rows:
+        res.append(row[1])
+
+def insert_into_possede(conn, client_id, oeuvre_id):
+    '''insert into possede (client_id, oeuvre_id)'''
+    cur = conn.cursor()   
+    sql_string = "INSERT INTO Possede VALUES (" + str(client_id) + ', ' + str(oeuvre_id) + ')'
+    cur.execute(sql_string)
+
+
+def insert_into_oeuvres(conn, obj):
+    '''insert into oeuvre '''
+    cur = conn.cursor()   
+    sql_string = 'INSERT INTO OeuvreAudios VALUES (' + \
+                      obj["id"] + ', ' + obj["name"] + ',' + obj["prix"] + ',' + obj["type"] + ')'
+    cur.execute(sql_string)
+    
 
 def should_connect_client(id, conn):
     '''id is expected to be an int, and it returs if we 
@@ -96,5 +163,22 @@ def should_connect_auteur(id, conn):
     all_ids = select_auteur_ids(conn)
 
     if(id in all_ids):
+        return True 
+    return False
+
+def should_shop_client(id, conn):
+    '''id is expected to be an int, and it returs if can buy the thing'''
+    all_ids = select_oeuvre_ids(conn)
+
+    if(id in all_ids):
+        return True 
+    return False
+
+
+def should_remove_auteur(conn, auteur_id, oeuvre_id):
+    '''id is expected to be an int, and it returs if we could remove that title'''
+    all_ids = select_auteur_oeuvres(auteur_id, conn)
+
+    if(oeuvre_id in all_ids):
         return True 
     return False
