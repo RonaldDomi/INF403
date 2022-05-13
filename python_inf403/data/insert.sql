@@ -15,7 +15,7 @@ INSERT INTO Clients VALUES(103, "Paul", "Durand", '23-02-2005');
 DELETE FROM OeuvreAudios;
 INSERT INTO OeuvreAudios VALUES(300, "Earth", 59.99, "song");       
 INSERT INTO OeuvreAudios VALUES(301, "Professional Rapper", 69.99, "song");       
-INSERT INTO OeuvreAudios VALUES(302, "Without Me", 39.99, "song");       
+INSERT INTO OeuvreAudios VALUES(302, "Without Me", 200, "song");       
 INSERT INTO OeuvreAudios VALUES(303, "Zeus", 60.00, "song");       
 INSERT INTO OeuvreAudios VALUES(304, "California Love", 10.00, "song");       
 INSERT INTO OeuvreAudios VALUES(305, "Drop It Like It's Hot", 100.99, "song");        
@@ -60,7 +60,9 @@ INSERT INTO Ecrit VALUES(211, 310);
 DELETE FROM Possede;
 INSERT INTO Possede VALUES(101, 300);
 INSERT INTO Possede VALUES(101, 303);
+INSERT INTO Possede VALUES(100, 303);
 INSERT INTO Possede VALUES(100, 301);
+INSERT INTO Possede VALUES(102, 302);
 
 
 

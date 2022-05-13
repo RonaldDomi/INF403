@@ -124,7 +124,7 @@ def handle_action(conn, current_state, usr_input, parameter):
             else:
                 print("You cannot remove that item")
         elif(usr_input == 'stat'):
-            pass
+            select_current_author_stat(conn, current_auteur)
 
 def transition(conn, current_state, usr_input, parameter):
 
