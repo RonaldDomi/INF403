@@ -158,11 +158,14 @@ def insert_into_possede(conn, client_id, oeuvre_id):
     cur.execute(sql_string)
 
 
-def insert_into_oeuvres(conn, obj):
+def insert_into_oeuvres(conn, obj, author_id):
     '''insert into oeuvre '''
     cur = conn.cursor()   
     sql_string = 'INSERT INTO OeuvreAudios VALUES (' + \
                       obj["id"] + ', ' + obj["name"] + ',' + obj["prix"] + ',' + obj["type"] + ')'
+    cur.execute(sql_string)
+    cur = conn.cursor()   
+    sql_string = 'INSERT INTO Ecrit VALUES('+str(author_id)+', ' + obj["id"] + ')'
     cur.execute(sql_string)
     
 
