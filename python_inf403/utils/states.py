@@ -38,7 +38,7 @@ states_commands = {
     10: ['shop', 'history', 'main', 'quit'], #connect_client
     11: [], #buy
     12: [], #history_client
-    13: ['main', 'quit'], #connect_auteur
+    13: ['main', 'history', '-hist', 'quit'], #connect_auteur
     14: [], #sell
     15: [], #history_auteur
     100: [],

@@ -98,3 +98,17 @@ def should_connect_auteur(id, conn):
     if(id in all_ids):
         return True 
     return False
+
+def select_current_auteur_hist(conn):
+    """
+    Affiche la liste de tous les oeuvres d'un auteurs.
+
+    :param conn: Connexion à la base de données
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM OeuvreAudios")
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)

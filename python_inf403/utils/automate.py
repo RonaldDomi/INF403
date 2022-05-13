@@ -95,11 +95,11 @@ def handle_action(conn, current_state, usr_input, parameter):
         if (usr_input == 'history'):
             print("history")
     elif(current_state == states['connect_auteur']):
-        pass
         # if (usr_input == 'shop'):
         #     print("shop")
-        # if (usr_input == 'history'):
-        #     print("history")
+        if (usr_input == 'history'):
+            select_current_auteur_hist(conn)
+
 
 def transition(conn, current_state, usr_input, parameter):
     '''
@@ -141,7 +141,10 @@ def transition(conn, current_state, usr_input, parameter):
         if(usr_input == 'main'):
             return states['main']    
         elif(usr_input == 'quit'):
-            return states['final_state']   
+            return states['final_state']
+        #elif(usr_input == 'history' or usr_input == '-hist'):
+        else :   
+            return states['connect_auteur']
         # if(usr_input == 'main'):
         #     return states['main']    
 
