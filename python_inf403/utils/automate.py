@@ -50,7 +50,8 @@ def get_input(current_state):
         if(condition):
             print("Command not recognized!")
             print("Commands available: ", states_commands[current_state])
-            
+            parameter = ''
+
     return raw, parameter
     
 def handle_action(conn, current_state, usr_input, parameter):
@@ -72,12 +73,19 @@ def handle_action(conn, current_state, usr_input, parameter):
         elif (usr_input == 'information' or usr_input == '-i'):
             print_information()
         elif (usr_input == 'connect'):
+            param = {
+                "username" : "zeynel",
+                "id" : 100,
+                "date" : '23-02-2001'
+            }
             if should_connect_client(parameter, conn):
-                print_welcome_client()
+                obj = get_client(conn, parameter)
+                print_welcome_client(obj)
                 current_client = parameter 
             elif should_connect_auteur(parameter, conn):
+                obj = get_auteur(conn, parameter)
                 current_auteur = parameter 
-                print_welcome_auteur()
+                print_welcome_auteur(obj)
             else:
                 print("Didn't connect: id entered not found")
 
@@ -105,24 +113,18 @@ def handle_action(conn, current_state, usr_input, parameter):
         elif (usr_input == 'history' or usr_input == '--hist'):
             select_current_client_history(conn, current_client)
     elif(current_state == states['connect_auteur']):
-        if (usr_input == 'shop'):
-            print("shop")
-        elif (usr_input == 'history' or usr_input == '--hist'):
+        if (usr_input == 'history' or usr_input == '--hist'):
             select_current_auteur_history(conn, current_auteur)
         elif(usr_input == "sell"):
-            print("in here you will enter you new product")
-            return_obj = {
-                "id": "311",
-                "name": "'some name'",
-                "prix": "78.50",
-                "type": "'song'"
-            }
+            return_obj = input_oeuvre()
             insert_into_oeuvres(conn, return_obj)
         elif(usr_input == "remove"):
             if should_remove_auteur(conn, current_auteur, parameter):
-                print("will be removed")
+                remove_oeuvre(conn, parameter)
             else:
                 print("You cannot remove that item")
+        elif(usr_input == 'stat'):
+            pass
 
 def transition(conn, current_state, usr_input, parameter):
 

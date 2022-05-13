@@ -133,6 +133,8 @@ def select_auteur_oeuvres(id, conn):
     for row in rows:
         res.append(row[1])
 
+    return res
+
 def insert_into_possede(conn, client_id, oeuvre_id):
     '''insert into possede (client_id, oeuvre_id)'''
     cur = conn.cursor()   
@@ -145,6 +147,13 @@ def insert_into_oeuvres(conn, obj):
     cur = conn.cursor()   
     sql_string = 'INSERT INTO OeuvreAudios VALUES (' + \
                       obj["id"] + ', ' + obj["name"] + ',' + obj["prix"] + ',' + obj["type"] + ')'
+    cur.execute(sql_string)
+    
+
+def remove_oeuvre(conn, id):
+    '''removes from oeuvres'''
+    cur = conn.cursor()   
+    sql_string = 'DELETE FROM OeuvreAudios WHERE numero = ' + str(id)
     cur.execute(sql_string)
     
 
@@ -182,3 +191,36 @@ def should_remove_auteur(conn, auteur_id, oeuvre_id):
     if(oeuvre_id in all_ids):
         return True 
     return False
+
+def get_client(conn, id):
+    '''return client data'''
+    res = []
+    cur = conn.cursor()   
+    sql_string = "SELECT * FROM Clients WHERE numero = " + str(id)
+    cur.execute(sql_string)
+    
+    
+    rows = cur.fetchall()
+    data = rows[0]
+    param = {
+        "username" : data[1],
+        "id" : data[0]
+    }
+
+    return param
+
+def get_auteur(conn, id):
+    '''return auteur data'''
+    res = []
+    cur = conn.cursor()   
+    sql_string = "SELECT * FROM Auteurs WHERE numero = " + str(id)
+    cur.execute(sql_string)
+    
+    rows = cur.fetchall()
+    data = rows[0]
+    param = {
+        "username" : data[1],
+        "id" : data[0]
+    }
+
+    return param

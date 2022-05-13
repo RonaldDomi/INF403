@@ -100,32 +100,23 @@ def print_information():
 #     id = input("entrez votre id")
 #     return id
 
-def print_welcome_client():
-    param = {
-        "username" : "zeynel",
-        "id" : 100,
-        "date" : '23-02-2001'
-    }
+def print_welcome_client(param):
     print("\nBonjour client " + param["username"])
     print("\nid : " + str(param["id"]))
-    print("\ndate de naissance : " + param["date"])
     print("\n")
 
-def print_welcome_auteur():
-    param = {
-        "username" : "zeynel",
-        "id" : 100,
-        "date" : '23-02-2001'
-    }
+def print_welcome_auteur(param):
     print("\nBonjour auteur " + param["username"])
     print("id : " + str(param["id"]))
-    print("date de naissance : " + param["date"])
+    print("\n")
 
 def input_oeuvre():
-    id = input("veuillez entrez l'id de votre nouvelle oeuvre : ")
-    name = input("veuillez entrez le nom de votre oeuvre : ")
-    type = input("de quelle type est votre oeuvre : ")
-    prix = input("quelle est le prix de votre oeuvre")
+    id = input("Enter your creations id: ")
+    name = input("Enter your creations name : ")
+    name = "'" + name + "'"
+    type = input("Type : ")
+    type = "'" + type + "'"
+    prix = input("Price : ")
     obj = {
         "id" : id,
         "name" : name,

@@ -40,6 +40,6 @@ states_commands = {
         'connect'], #main
     5: ['auteurs', 'clients', 'types', 'oeuvres', 'main', 'quit'], #information
     10: ['shop', 'history', '--hist', 'main', 'quit'], #connect_client
-    13: ['main', 'quit', 'history', '--hist',  'sell', 'remove'], #connect_auteur
+    13: ['main', 'quit', 'history', '--hist',  'sell', 'remove', 'stat'], #connect_auteur
     11: [], #buy
 }
