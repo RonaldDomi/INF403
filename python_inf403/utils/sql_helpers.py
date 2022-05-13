@@ -124,10 +124,11 @@ def select_current_author_stat(conn, id):
     '''return the stat of possisions of the current client'''
 
     cur = conn.cursor()
-    sql_string = "SELECT oeuvretype, count(oeuvre_numero)*prix FROM OeuvreAudios \
-                    JOIN Possede ON(oeuvre_numero = numero) JOIN Ecrit \
-                    USING(oeuvre_numero) WHERE auteur_numero = " + str(id) + \
-                    " GROUP BY oeuvretype"
+    sql_string = "WITH sommeParOeuvre(nom, somme) AS\
+	(\
+		SELECT nom, count(oeuvre_numero)*prix FROM OeuvreAudios JOIN Possede ON(oeuvre_numero = numero) JOIN Ecrit USING(oeuvre_numero) GROUP BY nom\
+	)\
+SELECT oeuvretype, sum(somme) FROM sommeParOeuvre JOIN OeuvreAudios USING(nom) JOIN Ecrit ON(numero = oeuvre_numero) WHERE auteur_numero = " + str(id) + " GROUP BY oeuvretype"
     cur.execute(sql_string)
     
     

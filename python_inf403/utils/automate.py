@@ -72,7 +72,7 @@ def handle_action(conn, current_state, usr_input, parameter):
             print_description()
         elif (usr_input == 'information' or usr_input == '-i'):
             print_information()
-        elif (usr_input == 'connect'):
+        elif (usr_input == 'connect' or usr_input == '-c'):
             param = {
                 "username" : "zeynel",
                 "id" : 100,
