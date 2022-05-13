@@ -55,10 +55,46 @@ def select_tous_les_oeuvres(conn):
         print(row)
 
 
-def select_all_ids(conn):
-    '''returns all ids of all clients and autheurs as a list of ints'''
+def select_client_ids(conn):
+    '''returns all ids of all clients as a list of ints'''
+    res = []
+    
     cur = conn.cursor()
-    cur.execute("SELECT numero FROM OeuvreAudios")
-
+    
+    cur.execute("SELECT numero FROM Clients")
     rows = cur.fetchall()
-    print(rows)
+    for row in rows:
+        res.append(row[0])     
+    
+    return res
+
+def select_auteur_ids(conn):
+    '''returns all ids of all autheurs as a list of ints'''
+    res = []
+    
+    cur = conn.cursor()   
+    
+    cur.execute("SELECT numero FROM Auteurs")
+    rows = cur.fetchall()
+    for row in rows:
+        res.append(row[0])     
+    
+    return res
+
+def should_connect_client(id, conn):
+    '''id is expected to be an int, and it returs if we 
+    did connect or not'''
+    all_ids = select_client_ids(conn)
+
+    if(id in all_ids):
+        return True 
+    return False
+    
+def should_connect_auteur(id, conn):
+    '''id is expected to be an int, and it returs if we 
+    did connect or not'''
+    all_ids = select_auteur_ids(conn)
+
+    if(id in all_ids):
+        return True 
+    return False

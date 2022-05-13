@@ -9,11 +9,12 @@ states = {
     "info_type": 7,
     "info_clients": 8,
     "info_oeuvre": 9,
-    "connect ": 10,
+    "connect_client": 10,
     "buy": 11,
     "history_client": 12,
-    "sell": 13,
-    "history_auteur": 14,
+    "connect_auteur": 13,
+    "sell": 14,
+    "history_auteur": 15,
     "final_state": 100
 }
 
@@ -28,15 +29,16 @@ states_commands = {
     7: [], #info_type
     8: [], #info_clients
     9: [], #info_oeuvre
+    
     # -----------!! empty states
 
     2: ['help', '-h', 'description', '-d', 'information', '-i', 'quit', 
         'connect'], #main
     5: ['auteurs', 'clients', 'types', 'oeuvres', 'main', 'quit'], #information
-    10: [], #connect_user
+    10: ['shop', 'history', 'main', 'quit'], #connect_client
     11: [], #buy
     12: [], #history_client
-    13: [], #connect_auteur
+    13: ['main', 'quit'], #connect_auteur
     14: [], #sell
     15: [], #history_auteur
     100: [],

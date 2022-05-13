@@ -27,3 +27,8 @@ def print_information():
 #     print("---------Connexion----------")
 #     id = input("entrez votre id")
 #     return id
+
+def print_welcome_client():
+    print("hello client")
+def print_welcome_auteur():
+    print("hello auteur")
