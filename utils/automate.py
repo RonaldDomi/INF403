@@ -72,7 +72,7 @@ def handle_action(conn, current_state, usr_input, parameter):
             print_description()
         elif (usr_input == 'information' or usr_input == '-i'):
             print_information()
-        elif (usr_input == 'connect'):
+        elif (usr_input == 'connect' or usr_input == '-c'):
             param = {
                 "username" : "zeynel",
                 "id" : 100,
@@ -117,7 +117,7 @@ def handle_action(conn, current_state, usr_input, parameter):
             select_current_auteur_history(conn, current_auteur)
         elif(usr_input == "sell"):
             return_obj = input_oeuvre()
-            insert_into_oeuvres(conn, return_obj)
+            insert_into_oeuvres(conn, return_obj, current_auteur)
         elif(usr_input == "remove"):
             if should_remove_auteur(conn, current_auteur, parameter):
                 remove_oeuvre(conn, parameter)

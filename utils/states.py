@@ -37,7 +37,7 @@ states_commands = {
     # -----------!! empty states
 
     2: ['help', '-h', 'description', '-d', 'information', '-i', 'quit', 
-        'connect'], #main
+        'connect', '-c'], #main
     5: ['auteurs', 'clients', 'types', 'oeuvres', 'main', 'quit'], #information
     10: ['shop', 'history', '--hist', 'main', 'quit'], #connect_client
     13: ['main', 'quit', 'history', '--hist',  'sell', 'remove', 'stat'], #connect_auteur

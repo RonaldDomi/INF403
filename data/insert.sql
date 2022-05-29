@@ -23,7 +23,12 @@ INSERT INTO OeuvreAudios VALUES(306, "The Old Man and The Sea", 19.99, "audioboo
 INSERT INTO OeuvreAudios VALUES(307, "#1034 - Elon Musk", 19.99, "podcast");        
 INSERT INTO OeuvreAudios VALUES(308, "#995 - Jordan Peterson", 19.99, "podcast");        
 INSERT INTO OeuvreAudios VALUES(309, "How to unlock your potential", 29.99, "podcast");        
-INSERT INTO OeuvreAudios VALUES(310, "Life", 200.99, "podcast");        
+INSERT INTO OeuvreAudios VALUES(310, "Life", 200.99, "podcast");
+INSERT INTO OeuvreAudios VALUES(311, "why python is the best programming language", 30, "podcast");
+INSERT INTO OeuvreAudios VALUES(312, "gangster life", 7.99, "song");
+INSERT INTO OeuvreAudios VALUES(313, "the science of freezbie", 120, "audiobook");
+
+
 
 -- AUTEURS
 DELETE FROM Auteurs;
@@ -39,7 +44,8 @@ INSERT INTO Auteurs VALUES(207, "George Orwell");
 INSERT INTO Auteurs VALUES(208, "Ronald Domi");                                
 INSERT INTO Auteurs VALUES(209, "Joe Rogan");                                
 INSERT INTO Auteurs VALUES(210, "Tom Bilyeu");                                
-INSERT INTO Auteurs VALUES(211, "Sadhguru");                                 
+INSERT INTO Auteurs VALUES(211, "Sadhguru");
+INSERT INTO Auteurs VALUES(212, "Ronald");                                 
 
 -- ECRIT
 DELETE FROM Ecrit;
@@ -54,6 +60,9 @@ INSERT INTO Ecrit VALUES(209, 307);
 INSERT INTO Ecrit VALUES(209, 308);        
 INSERT INTO Ecrit VALUES(210, 309);        
 INSERT INTO Ecrit VALUES(211, 310);        
+INSERT INTO Ecrit VALUES(212, 311);        
+INSERT INTO Ecrit VALUES(212, 312);        
+INSERT INTO Ecrit VALUES(212, 313);        
 
 
 -- POSSEDE
@@ -63,6 +72,14 @@ INSERT INTO Possede VALUES(101, 303);
 INSERT INTO Possede VALUES(100, 303);
 INSERT INTO Possede VALUES(100, 301);
 INSERT INTO Possede VALUES(102, 302);
+INSERT INTO Possede VALUES(100, 311);
+INSERT INTO Possede VALUES(101, 311);
+INSERT INTO Possede VALUES(102, 312);
+INSERT INTO Possede VALUES(103, 312);
+INSERT INTO Possede VALUES(100, 312);
+INSERT INTO Possede VALUES(101, 312);
+INSERT INTO Possede VALUES(102, 313);
+INSERT INTO Possede VALUES(103, 313);
 
 
 

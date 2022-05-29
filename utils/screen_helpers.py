@@ -44,6 +44,8 @@ def print_description():
     print("Vous pouvez aussi consultez votre historique d'achat avec la commande history ou -hist.\n")
     print("\nDans le cas où vous etes connectez en tant qu'auteur.")
     print("Pour consultez vos oeuvres vous pouvez tapez la commande history ou -hist\n")
+    print("Vous pouvez aussi consultez vos statistique en tapant stat.")
+    print("cette commande vous affichera la somme d'argent que vous avez faite en fonction du type d'audio\n")
     print("vous pouvez aussi ajouter une oeuvre en tapant la commande sell : ")
     print("il faudra ensuite donnes les information demandees :")
     print("[-] id")
