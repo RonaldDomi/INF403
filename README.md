@@ -27,4 +27,4 @@ updated correctly.
 
 
 
-![Alt text](/model/automaotn.jpg "Optional title")
+![Image of automaton used on this project](/model/automaton.jpg "Automaton")
