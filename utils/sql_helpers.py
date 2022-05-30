@@ -94,6 +94,7 @@ def select_auteur_ids(conn):
     
     return res
 
+
 def select_current_auteur_history(conn, id):
     '''return the history of possisions of the current auteur'''
     res = []
@@ -119,7 +120,6 @@ def select_current_client_history(conn, id):
     for row in rows:
         print(row)
 
-
 def select_current_author_stat(conn, id):
     '''return the stat of possisions of the current client'''
 
@@ -136,7 +136,7 @@ SELECT oeuvretype, sum(somme) FROM sommeParOeuvre JOIN OeuvreAudios USING(nom) J
     for row in rows:
         print(row)
 
-def select_auteur_oeuvres(id, conn):
+def select_current_auteur_oeuvres(id, conn):
     '''return all oeuvres written by id auteur'''
     res = []
     
@@ -151,12 +151,12 @@ def select_auteur_oeuvres(id, conn):
 
     return res
 
+
 def insert_into_possede(conn, client_id, oeuvre_id):
     '''insert into possede (client_id, oeuvre_id)'''
     cur = conn.cursor()   
     sql_string = "INSERT INTO Possede VALUES (" + str(client_id) + ', ' + str(oeuvre_id) + ')'
     cur.execute(sql_string)
-
 
 def insert_into_oeuvres(conn, obj, author_id):
     '''insert into oeuvre '''
@@ -202,18 +202,17 @@ def should_shop_client(id, conn):
         return True 
     return False
 
-
 def should_remove_auteur(conn, auteur_id, oeuvre_id):
     '''id is expected to be an int, and it returs if we could remove that title'''
-    all_ids = select_auteur_oeuvres(auteur_id, conn)
+    all_ids = select_current_auteur_oeuvres(auteur_id, conn)
 
     if(oeuvre_id in all_ids):
         return True 
     return False
 
+
 def get_client(conn, id):
     '''return client data'''
-    res = []
     cur = conn.cursor()   
     sql_string = "SELECT * FROM Clients WHERE numero = " + str(id)
     cur.execute(sql_string)
@@ -230,7 +229,6 @@ def get_client(conn, id):
 
 def get_auteur(conn, id):
     '''return auteur data'''
-    res = []
     cur = conn.cursor()   
     sql_string = "SELECT * FROM Auteurs WHERE numero = " + str(id)
     cur.execute(sql_string)

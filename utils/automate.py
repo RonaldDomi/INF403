@@ -1,5 +1,4 @@
 
-from doctest import ELLIPSIS_MARKER
 from utils.screen_helpers import *
 from utils.states import *
 from utils.sql_helpers import *
@@ -24,9 +23,6 @@ def get_input(current_state):
         return None, None
             
     parameter = ''
-    #normal commands
-    # if(parameter.isalpha()):
-    #     print("parameter is alpha")
     
     condition = True
     while condition:
@@ -73,24 +69,16 @@ def handle_action(conn, current_state, usr_input, parameter):
         elif (usr_input == 'information' or usr_input == '-i'):
             print_information()
         elif (usr_input == 'connect' or usr_input == '-c'):
-            param = {
-                "username" : "zeynel",
-                "id" : 100,
-                "date" : '23-02-2001'
-            }
             if should_connect_client(parameter, conn):
                 obj = get_client(conn, parameter)
                 print_welcome_client(obj)
                 current_client = parameter 
             elif should_connect_auteur(parameter, conn):
                 obj = get_auteur(conn, parameter)
-                current_auteur = parameter 
                 print_welcome_auteur(obj)
+                current_auteur = parameter 
             else:
-                print("Didn't connect: id entered not found")
-
-        # elif (usr_input == 'quit'):
-        #     print_quit()
+                print("Didn't connect: id entered not found\n Clients start with 1xx, Auteurs start with 2xx")
 
 
     elif(current_state == states['information']):
@@ -104,26 +92,26 @@ def handle_action(conn, current_state, usr_input, parameter):
             select_tous_les_oeuvres(conn)
     
     elif(current_state == states['connect_client']):
-        if (usr_input == 'shop'):
+        if (usr_input == 'buy'):
             if should_shop_client(parameter, conn):
                 insert_into_possede(conn, current_client, parameter)
                 print('Thank you for buying our product')
             else:
-                print("Didn't purchase: id entered not found")
+                print("Didn't purchase: id entered not found]\n All products start with {3xx}")
         elif (usr_input == 'history' or usr_input == '--hist'):
             select_current_client_history(conn, current_client)
     elif(current_state == states['connect_auteur']):
         if (usr_input == 'history' or usr_input == '--hist'):
             select_current_auteur_history(conn, current_auteur)
-        elif(usr_input == "sell"):
+        elif(usr_input == "create"):
             return_obj = input_oeuvre()
             insert_into_oeuvres(conn, return_obj, current_auteur)
-        elif(usr_input == "remove"):
+        elif(usr_input == "delete"):
             if should_remove_auteur(conn, current_auteur, parameter):
                 remove_oeuvre(conn, parameter)
             else:
                 print("You cannot remove that item")
-        elif(usr_input == 'stat'):
+        elif(usr_input == 'statistics' or usr_input == '-s'):
             select_current_author_stat(conn, current_auteur)
 
 def transition(conn, current_state, usr_input, parameter):
@@ -147,10 +135,6 @@ def transition(conn, current_state, usr_input, parameter):
                 return states['main']
         elif(usr_input == 'quit'):
             return states['final_state']  
-        else:
-            #sinon on revient
-            # --help --description
-            return states['main']
     elif(current_state == states['information']):
         if(usr_input == 'main'):
             return states['main']    
@@ -163,12 +147,8 @@ def transition(conn, current_state, usr_input, parameter):
             return states['main']    
         elif(usr_input == 'quit'):
             return states['final_state']   
-        else:
-            return states['connect_client']
     elif(current_state == states['connect_auteur']):
         if(usr_input == 'main'):
             return states['main']    
         elif(usr_input == 'quit'):
-            return states['final_state']  
-        else:
-            return states['connect_auteur']
+            return states['final_state']
