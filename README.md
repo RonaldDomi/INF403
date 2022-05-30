@@ -27,4 +27,4 @@ updated correctly.
 
 
 
-![Alt text](/model/automaotn.svg "Optional title")
+![Alt text](/model/automaotn.jpg "Optional title")
